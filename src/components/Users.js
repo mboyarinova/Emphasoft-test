@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import * as request from 'superagent';
 import { Redirect } from 'react-router-dom';
 
+import UserTable from './UserTable';
+
 function Users() {
 
   const [users, setUsers] = useState([]);
@@ -36,9 +38,8 @@ function Users() {
       { authorized ? (
         <React.Fragment>
           { users.length > 0 ? (
-            <div className = "table">
-              <h1>Список пользователей</h1>
-              <br />
+            <div>
+              <h1>Список пользователей</h1><br/>
               <form>
                 <div className="form-group row">
                   <label htmlFor="filter" className="col-sm-2 col-form-label control-label">
@@ -46,33 +47,12 @@ function Users() {
                   </label>
                   <div class="col-sm-2 lower">
                     <input type="text" id="filter" className="form-control"
-                           onChange={event => setFilter(event.target.value)}/>
+                            onChange={event => setFilter(event.target.value)}/>
                   </div>
                 </div>
               </form>
               <br/>
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Логин</th>
-                    <th>Имя пользователя</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  { users.map((user, index) => (
-                    <React.Fragment>
-                      { user.username.startsWith(filter) ? (
-                        <tr key={index}>
-                          <td>{user.id}</td>
-                          <td>{user.username}</td>
-                          <td>{user.first_name + " " + user.last_name}</td>
-                        </tr>
-                      ) : null }
-                    </React.Fragment>
-                  )) }
-                </tbody>
-              </table>
+              <UserTable users={users} filter={filter}/>
             </div>
           ) : null }
         </React.Fragment>
