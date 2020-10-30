@@ -29,15 +29,26 @@ function LoginForm() {
     <React.Fragment>
       {authenticated ? <Redirect to="/users" /> :
         <div className="form">
-          <h2>Добро пожаловать!</h2>
+          <h3>Добро пожаловать!</h3>
+          <br />
           <form onSubmit={submitForm}>
-            <label htmlFor="username">Имя пользователя:</label><br/>
-            <input type="text" id="username" name="username" value={username}
-                   onChange={event => setUsername(event.target.value)} /><br/>
-            <label htmlFor="password">Пароль:</label><br/>
-            <input type="password" id="password" name="password" value={password}
-                   onChange={event => setPassword(event.target.value)} /><br/>
-            <button type="submit">Войти</button>
+            <div className="form-group">
+              <label htmlFor="username" className="control-label">Логин</label>
+              <div className="col-sm-3 col-xs-3 center">
+                <input type="text" class="form-control" id="username"
+                       name="username" value={username} placeholder="Логин"
+                       onChange={event => setUsername(event.target.value)} />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password" className="control-label">Пароль</label>
+              <div className="col-sm-3 col-xs-3 center">
+                <input type="password" class="form-control" id="password"
+                       name="password" value={password} placeholder="Пароль"
+                       onChange={event => setPassword(event.target.value)} />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
           </form>
         </div>}
     </React.Fragment>

@@ -38,19 +38,25 @@ function Users() {
           { users.length > 0 ? (
             <div className = "table">
               <h1>Список пользователей</h1>
+              <br />
               <form>
-                <label>Фильтровать пользователей по логину:
-                  <input type="text"
-                         onChange={event => setFilter(event.target.value)}/>
-                </label>
+                <div className="form-group row">
+                  <label htmlFor="filter" className="col-sm-2 col-form-label control-label">
+                    Фильтровать пользователей по логину:
+                  </label>
+                  <div class="col-sm-2 lower">
+                    <input type="text" id="filter" className="form-control"
+                           onChange={event => setFilter(event.target.value)}/>
+                  </div>
+                </div>
               </form>
               <br/>
-              <table>
+              <table className="table table-striped">
                 <thead>
                   <tr>
                     <th>ID</th>
                     <th>Логин</th>
-                    <th>Имя</th>
+                    <th>Имя пользователя</th>
                   </tr>
                 </thead>
                 <tbody>
