@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import superagent from 'superagent';
+import * as request from 'superagent';
 
 function LoginForm() {
 
@@ -12,7 +12,7 @@ function LoginForm() {
 
   function submitForm(event) {
     event.preventDefault();
-    superagent
+    request
       .post("https://emphasoft-test-assignment.herokuapp.com/api-token-auth/")
       .send({username: username, password: password})
       .end((err, res) => {
@@ -28,15 +28,18 @@ function LoginForm() {
   return (
     <React.Fragment>
       {authenticated ? <Redirect to="/users" /> :
-        <form onSubmit={submitForm}>
-          <label htmlFor="username">Имя пользователя:</label><br/>
-          <input type="text" id="username" name="username" value={username}
-                 onChange={event => setUsername(event.target.value)} /><br/>
-          <label htmlFor="password">Пароль:</label><br/>
-          <input type="password" id="password" name="password" value={password}
-                 onChange={event => setPassword(event.target.value)} /><br/>
-          <button type="submit">Войти</button>
-        </form>}
+        <div className="form">
+          <h2>Добро пожаловать!</h2>
+          <form onSubmit={submitForm}>
+            <label htmlFor="username">Имя пользователя:</label><br/>
+            <input type="text" id="username" name="username" value={username}
+                   onChange={event => setUsername(event.target.value)} /><br/>
+            <label htmlFor="password">Пароль:</label><br/>
+            <input type="password" id="password" name="password" value={password}
+                   onChange={event => setPassword(event.target.value)} /><br/>
+            <button type="submit">Войти</button>
+          </form>
+        </div>}
     </React.Fragment>
   )
 }
