@@ -6,7 +6,9 @@ function LoginForm() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(
+    localStorage.token ? true : false
+  );
 
   function submitForm(event) {
     event.preventDefault();
@@ -27,10 +29,10 @@ function LoginForm() {
     <React.Fragment>
       {authenticated ? <Redirect to="/users" /> :
         <form onSubmit={submitForm}>
-          <label for="username">Имя пользователя:</label><br/>
+          <label htmlFor="username">Имя пользователя:</label><br/>
           <input type="text" id="username" name="username" value={username}
                  onChange={event => setUsername(event.target.value)} /><br/>
-               <label for="password">Пароль:</label><br/>
+          <label htmlFor="password">Пароль:</label><br/>
           <input type="password" id="password" name="password" value={password}
                  onChange={event => setPassword(event.target.value)} /><br/>
           <button type="submit">Войти</button>
